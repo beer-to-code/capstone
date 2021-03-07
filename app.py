@@ -5,7 +5,8 @@ from flask import (
     render_template,
     request,
     session,
-    url_for
+    url_for,
+    jsonify
 )
 from models import user
 from datetime import datetime
@@ -59,6 +60,12 @@ def signup():
             formdata=request.form['Fname']
             print("data is",formdata)
     return render_template('signup.html')
+
+@app.route("/signup_",methods=['GET','POST'])
+def signup_():
+    for key,val in request.form.items():
+        print (key,val)
+    return jsonify(dict(request.form))
 
 @app.route('/dashboard')
 def dashboard():
